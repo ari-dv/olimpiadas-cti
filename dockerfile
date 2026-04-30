@@ -1,25 +1,28 @@
 # Etapa 1: Construcción
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copiar archivos de dependencias
-COPY package*.json ./
+# Copiar archivos de configuración
+COPY package.json package-lock.json ./
 
-# Instalar dependencias
-RUN npm install
+# Instalar dependencias de forma limpia
+RUN npm ci
 
-# Copiar el resto del código y compilar
+# Copiar el resto del código
 COPY . .
+
+# Ejecutar el build de Vite
 RUN npm run build
 
-# Etapa 2: Servidor de producción
+# Etapa 2: Servidor Nginx
 FROM nginx:stable-alpine
 
-# Copiar los archivos compilados desde la etapa anterior
+# Copiar los archivos generados (Vite por defecto usa 'dist')
+# Si tu proyecto usa 'build', cambia /app/dist por /app/build
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copiar una configuración personalizada de Nginx para React Router
+# Copiar configuración de Nginx para React Router
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
