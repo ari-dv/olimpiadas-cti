@@ -1,7 +1,0 @@
-{
-    "periods": ["2026 - 1", "2026 - 2"],
-    "levels": ["Primaria", "Secundaria"],
-    "schools": ["I.E. Los Próceres", "Colegio Santa Maria", "San Juan Masías"],
-    "grades": ["1ro", "2do", "3ro", "4to", "5to", "6to"],
-    "sections": ["A", "B", "C", "Única"]
-  }

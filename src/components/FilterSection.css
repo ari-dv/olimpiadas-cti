@@ -1,144 +1,343 @@
-.filter-container {
-  width: 100%;
-  max-width: 100%; 
-  background-color: var(--background-gray);
-  padding: 24px;
-  border-radius: var(--border-radius-lg);
-  margin-bottom: 30px;
-  box-sizing: border-box;
-}
-
-.search-box {
-  position: relative;
-  margin-bottom: 12px; 
-  width: 100%;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  color: var(--text-muted);
-}
-
-.search-input {
-  width: 100%;
-  padding: 12px 15px 12px 45px;
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-md);
-  font-size: 15px;
-  background-color: var(--surface-white);
-  color: var(--text-main);
-  box-sizing: border-box;
-}
-
-.search-input::placeholder {
-  color: #a0a0a0;
-}
-
-.filter-actions-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 0 5px; 
-}
-
-.loading-feedback {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--primary-blue, #1a365d);
-  transition: opacity 0.2s ease;
-}
-
-.clear-filters-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted, #666666);
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 5px;
-  transition: color 0.2s ease;
-}
-
-.clear-filters-btn:hover {
-  color: var(--primary-blue, #1a365d);
-}
-
-.dropdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
-}
-
-.dropdown-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-group label {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.dropdown-group select {
-  width: 100%;
-  padding: 10px 35px 10px 15px; 
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius-md);
-  background-color: var(--surface-white);
-  font-size: 14px;
-  color: var(--text-main);
-  cursor: pointer;
-  appearance: none; 
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 12px center; 
-  background-size: 16px; 
-  box-sizing: border-box;
-}
-
-.dropdown-group select:focus {
-  outline: none;
-  border-color: var(--primary-blue);
-}
-
-
-@media (max-width: 768px) {
+/* =========================================
+   CONTENEDOR GLOBAL Y CABECERA
+   ========================================= */
+   .filter-wrapper {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .schools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 5px;
+  }
+  
+  .schools-header h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary-blue, #2b3a8c);
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .change-school-btn {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .change-school-btn:hover {
+    border-color: var(--primary-blue, #2b3a8c);
+    color: var(--primary-blue, #2b3a8c);
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+  }
+  
+  /* =========================================
+     GRILLA DE COLEGIOS (TARJETAS)
+     ========================================= */
+  .schools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 35px;
+  }
+  
+  .school-card {
+    padding: 24px 16px;
+    background: var(--surface-white, #ffffff);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Sombra suave Premium */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  }
+  
+  .school-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+    border-color: #e2e8f0;
+  }
+  
+  /* Estado Activo: Borde azul y resplandor */
+  .school-card.active {
+    border-color: var(--primary-blue, #2b3a8c);
+    background-color: #f8fbff;
+    box-shadow: 0 8px 20px rgba(43, 58, 140, 0.12);
+  }
+  
+  .school-logo {
+    width: 64px; /* Lo hice un poquito más grande para que el escudo luzca mejor */
+    height: 64px;
+    border-radius: 12px; /* Cambiado de 50% a 12px para que sea cuadrado redondeado */
+    background: #f1f5f9;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-weight: 800;
+    font-size: 16px;
+    color: #64748b;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+  }
+  
+  .school-card.active .school-logo {
+    background: white;
+    color: var(--primary-blue, #2b3a8c);
+    border-color: #eff6ff;
+  }
+  
+  .school-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* CRÍTICO: 'contain' asegura que el escudo completo encaje sin recortarse */
+    padding: 4px; /* Un pequeño respiro (espacio) para que el escudo no toque los bordes */
+  }
+  
+  .school-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .school-card.active .school-name {
+    color: var(--primary-blue, #2b3a8c);
+  }
+  
+  .filter-hint {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.05);
+  }
+  
+  .hint-icon { 
+    font-size: 24px; 
+    animation: bounce 2s infinite; /* Pequeño salto para llamar la atención */
+  }
+  
+  .filter-hint p {
+    margin: 0;
+    font-size: 15px;
+    color: #92400e;
+    font-weight: 600;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  /* =========================================
+     CONTENEDOR BLANCO DE FILTROS FLOTANTE
+     ========================================= */
   .filter-container {
-    padding: 20px 15px; 
-    background-color: var(--background-gray); 
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-sm);
+    background-color: var(--surface-white, #ffffff);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    /* Sombra en capas para que flote sobre el body */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
   }
 
+  /* =========================================
+     INFORMACIÓN DE RESULTADOS ENCONTRADOS
+     ========================================= */
+  .results-found-info {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--primary-blue, #2b3a8c);
+    font-weight: 600;
+  }
+
+  .results-found-info p {
+    margin: 0;
+  }
+
+  .results-found-info.results-unavailable {
+    background-color: #f4e1d1;
+    border-color: #f88b8b;
+    color: #282624;
+  }
+  
+  .search-box {
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    background: #f8fafc; /* Inset gris muy claro */
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  
+  /* Efecto focus en el contenedor de búsqueda */
+  .search-box:focus-within {
+    background: #ffffff;
+    border-color: var(--primary-blue, #2b3a8c);
+    box-shadow: 0 0 0 4px rgba(43, 58, 140, 0.1);
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    color: var(--primary-blue, #2b3a8c);
+    font-size: 20px;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+  
+  .search-box:focus-within .search-icon {
+    color: var(--primary-blue, #2b3a8c);
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 16px 16px 16px 52px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    color: #1e293b;
+    font-weight: 500;
+  }
+  
+  .search-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  
+  .search-clear {
+    padding: 0 16px;
+    cursor: pointer;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 800;
+    transition: color 0.2s ease;
+  }
+  
+  .search-clear:hover {
+    color: #64748b;
+  }
+  
+  /* =========================================
+     SELECTORES DESPLEGABLES (DROPDOWNS)
+     ========================================= */
+  .dropdown-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
   .dropdown-group label {
-    display: none; 
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    transition: opacity 0.3s ease;
   }
-
-  .dropdown-grid { 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-areas: 
-    "colegio colegio" 
-    "nivel nivel"      
-    "grado seccion";  
-    gap: 15px;
+  
+  .dropdown-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background-color: var(--surface-white, #ffffff);
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* Reset appearance and add custom arrow like Hero */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
   }
-
-  .group-nivel { grid-area: nivel; display: flex; }
-  .group-grado { grid-area: grado; display: flex; }
-  .group-colegio { grid-area: colegio; display: flex; }
-  .group-seccion { grid-area: seccion; display: flex; } 
-}
+  
+  .dropdown-group select:hover:not(:disabled) {
+    border-color: #cbd5e1;
+  }
+  
+  .dropdown-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue, #2b3a8c);
+    box-shadow: 0 0 0 3px rgba(43, 58, 140, 0.1);
+  }
+  
+  .dropdown-group select:disabled {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+    border-color: #f1f5f9;
+    background-image: none; /* Quitamos la flecha si está deshabilitado */
+  }
+  
+  /* =========================================
+     ANIMACIONES Y RESPONSIVE
+     ========================================= */
+  .reveal-animation {
+    animation: reveal 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  @keyframes reveal {
+    from { 
+      opacity: 0; 
+      transform: translateY(15px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .schools-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 12px;
+    }
+    
+    .filter-container {
+      padding: 20px;
+    }
+  
+    .dropdown-grid { 
+      grid-template-columns: 1fr; 
+      gap: 16px;
+    }
+  }

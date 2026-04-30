@@ -1,0 +1,286 @@
+  .support-section {
+    margin-top: 60px;
+    width: 100%;
+    margin-bottom: -40px;
+  }
+  
+  .support-container {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide exactamente en 2 mitades */
+    gap: 40px;
+    align-items: center; /* Centra verticalmente ambas columnas */
+  }
+  
+  .support-intro {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .support-icon-wrapper {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+  }
+  
+  .headset-icon {
+    width: 24px;
+    height: 24px;
+    color: #3b4eb8;
+  }
+  
+  .support-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+  }
+  
+  .support-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .support-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .support-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  .schedule-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  .clock-icon {
+    width: 16px;
+    height: 16px;
+    color: #666;
+    display: none; /* Oculto en escritorio según maqueta */
+  }
+  
+  .mobile-only {
+    display: none;
+  }
+
+  .whatsapp-link {
+    text-decoration: none;
+    color: blue;
+    transition: opacity 0.2s;
+  }
+  
+  .whatsapp-link:hover {
+    opacity: 0.8;
+  }
+  
+  .support-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Espacio uniforme entre los bloques de info */
+  }
+  
+  .support-contact-row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* En caso de pantallas medianas se bajan */
+  }
+  
+  .support-map-column {
+    width: 100%;
+    height: 100%;
+    min-height: 250px; /* Asegura que el mapa tenga buena altura */
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Ayuda a que el iframe llene el alto */
+  }
+  
+  .support-map-column iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    flex: 1;
+  }
+
+  /* --- BOTÓN DE ACCIÓN DESTACADO (WhatsApp) --- */
+.btn-action-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25D366; /* Verde oficial de WhatsApp */
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 4px;
+}
+
+.btn-action-whatsapp:hover {
+  background-color: #1ebc59;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+  color: white;
+}
+
+.whatsapp-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* --- ENLACE DE DIRECCIÓN --- */
+/* --- BOTÓN SECUNDARIO DE DIRECCIÓN --- */
+.btn-secondary-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #3b4eb8; /* Azul institucional */
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  /* El padding imita el tamaño del botón de WhatsApp */
+  padding: 10px 20px; 
+  border: 2px solid #3b4eb8;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-top: 4px;
+}
+
+.btn-secondary-location:hover {
+  background-color: rgba(59, 78, 184, 0.05); /* Fondo azul muy suave al pasar el mouse */
+  transform: translateY(-2px); /* Mismo salto que el botón de WhatsApp */
+}
+
+.location-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- RESPONSIVO MÓVIL (Texto centrado y botones completos) --- */
+@media (max-width: 768px) {
+  .support-container {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    gap: 32px;
+  }
+
+  /* Centramos toda la columna de información */
+  .support-info-column {
+    align-items: center; 
+    text-align: center;
+  }
+
+  .support-intro {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .support-icon-wrapper {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .headset-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .support-title {
+    color: #3b4eb8;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  /* Ocultamos subtítulos y "labels" pequeñas (como TELÉFONO o DIRECCIÓN) según tu diseño */
+  .support-subtitle,
+  .support-label,
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline-block;
+    color: #4a4a4a;
+  }
+
+  /* Fila de contactos se vuelve columna al 100% */
+  .support-contact-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .support-contact {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Botones anchos y centrados */
+  .btn-action-whatsapp, 
+  .btn-secondary-location {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .support-schedule {
+    width: 100%;
+  }
+
+  /* Caja blanca del horario centrada */
+  .schedule-box {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra el conjunto de icono + texto */
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+    text-align: left; /* Mantiene el texto ordenado a la derecha de su propio icono */
+  }
+
+  .schedule-box p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .clock-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .support-map-column {
+    min-height: 250px;
+    height: 250px;
+    width: 100%;
+  }
+}

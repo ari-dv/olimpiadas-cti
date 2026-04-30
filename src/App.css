@@ -1,32 +1,226 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
+  .scholarship-banner {
+    background: linear-gradient(135deg, #2b3a8c 0%, #3b4eb8 50%, #1e2a6b 100%);
+    color: white;
+    padding: 48px 32px; /* Un poco más de respiro vertical */
+    border-radius: 16px;
+    margin-top: 30px; 
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(43, 58, 140, 0.25);
   }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+
+  .scholarship-banner::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -5%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .scholarship-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -3%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .banner-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .banner-title {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .banner-title svg {
+    font-size: 36px;
+    color: #ffd700 !important;
+    filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
+  }
+
+  .banner-welcome-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    opacity: 0.95;
+    text-align: center;
+    font-weight: 500;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .banner-welcome-text strong {
+    color: #ffd700;
+    font-weight: 800;
+  }
+
+  .benefits-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .benefit-card {
+    padding: 28px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+    background: #94a3b84e;
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  }
+
+  .check-icon-gold {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Ícono más grande */
+    height: 40px;
+    background: #fffbeb; /* Fondo amarillo muy suave */
+    border-radius: 50%;
+    margin-top: -4px;
+  }
+
+  .check-icon-gold svg {
+    width: 22px;
+    height: 22px;
+    color: #ffb700; 
+    filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
+  }
+
+  .benefit-info {
+    flex: 1;
+    text-align: left;
+  }
+
+  .benefit-info h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    color: #fefefe; /* Texto oscuro */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .benefit-info p {
+    font-size: 14.5px;
+    margin: 0;
+    line-height: 1.6;
+    color: #ffffff; /* Gris oscuro para lectura cómoda */
+  }
+
+  .benefit-info p strong {
+    color: #25283f; 
+    font-weight: 800;
+    background: #f1c40f; /* Resaltado amarillo */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+
+
+   .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo img {
+    height: 55px;
+  }
+
+   
+  
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.app-container {
-  min-height: 100vh;
+.scholarship-banner {
+  animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.main-content {
-  padding: 100px 20px 40px 20px; 
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+
+
+
+
+@media (max-width: 768px) {
+  .scholarship-banner {
+    padding: 32px 20px;
+    border-radius: 14px;
+  }
+
+  .banner-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .banner-welcome-text {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .benefits-columns {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .benefit-card {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .benefit-info h3 {
+    font-size: 16px;
+  }
+
+  .benefit-info p {
+    font-size: 13.5px;
+  }
+
+  .check-icon-gold {
+    width: 32px;
+    height: 32px;
+    margin-top: 0;
+  }
+
+  .check-icon-gold svg {
+    width: 18px;
+    height: 18px;
+  }
 }

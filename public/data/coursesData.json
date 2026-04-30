@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "title": "Computación",
+    "level": "PRIMARIA",
+    "badgeClass": "badge-primaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 2,
+    "title": "Diseño Gráfico con Inteligencia Artificial",
+    "level": "PRIMARIA",
+    "badgeClass": "badge-primaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 3,
+    "title": "Ensamblaje y Mantenimiento de Computadoras",
+    "level": "PRIMARIA",
+    "badgeClass": "badge-primaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 4,
+    "title": "Computación",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 5,
+    "title": "Diseño Gráfico con Inteligencia Artificial",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 6,
+    "title": "Ensamblaje y Mantenimiento de Computadoras",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 7,
+    "title": "Vuelo Escolar: Drones",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 8,
+    "title": "Diseño Creativo con Canva",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "8 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 9,
+    "title": "Inducción Tecnológica en Ciencias Económicas y Empresariales",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 10,
+    "title": "Inducción Tecnológica en Ciencias Agrarias",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 11,
+    "title": "Inducción Tecnológica en Ciencias Ambientales",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 12,
+    "title": "Inducción Tecnológica en Ingeniería Civil y Arquitectura",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 13,
+    "title": "Inducción Tecnológica en Ciencias de la Salud",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 14,
+    "title": "Inducción Tecnológica en Derecho y Ciencias Políticas",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 15,
+    "title": "Inducción Tecnológica en Idiomas",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  },
+  {
+    "id": 16,
+    "title": "Inducción Tecnológica en Ingeniería de Sistemas e Informática",
+    "level": "SECUNDARIA",
+    "badgeClass": "badge-secundaria",
+    "duration": "5 semanas",
+    "date": "Sáb. y Dom."
+  }
+]

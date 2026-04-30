@@ -1,38 +1,222 @@
-:root {
-  --primary-blue: #2b3a8c;
-  --secondary-gold: #f1c40f;
-  --soft-purple: #8e94c9;
+
+   :root {
+    /* Paleta de Colores */
+    --primary-blue: #2b3a8c;
+    --secondary-gold: #f1c40f;
+    --soft-purple: #8e94c9;
+    
+    --background-gray: #ededed;
+    --surface-white: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-light: #e0e0e0;
   
-  --background-gray: #ededed;
-  --surface-white: #ffffff;
-  --text-main: #333333;
-  --text-muted: #666666;
-  --border-light: #e0e0e0;
-
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Manrope', sans-serif;
-  background-color: var(--surface-white);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-blue);
-}
-
-a {
-  text-decoration: none;
-  color: var(--primary-blue);
-}
+    /* Bordes */
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px; /* Aumenté un poco para un look más moderno */
+    
+    /* Sombras Modernas (Soft Layered Shadows) */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* =========================================
+     RESETS Y TIPOGRAFÍA
+     ========================================= */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #f8fafc; /* El truco Off-White que hace resaltar todo */
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; /* Mejora la lectura en pantallas modernas */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-blue);
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--soft-purple);
+  }
+  
+  /* Nota: Dejé esta clase .counter por si la usas en otro lado (parece código por defecto de Vite) */
+  .counter {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+    margin-bottom: 24px;
+  }
+  
+  /* =========================================
+     LAYOUT PRINCIPAL
+     ========================================= */
+  .app-container {
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    padding: 140px 20px 40px 20px; 
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Arreglo para que el scroll a los ID (anclas) no se esconda detrás de un navbar fijo */
+  [id] {
+    scroll-margin-top: 100px;
+  }
+  
+  /* =========================================
+     BANNER DE BECAS (Mejorado con gradiente y sombras)
+     ========================================= */
+  .scholarship-banner {
+    /* Gradiente moderno en lugar de color sólido */
+    background: linear-gradient(135deg, #3b4eb8 0%, #2b3a8c 100%); 
+    color: white;
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    margin-top: 30px; 
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: var(--shadow-md); /* Sombra para que flote sobre el fondo gris */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Toque de cristal en el borde */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Brillo sutil de fondo para el banner (opcional pero se ve genial) */
+  .scholarship-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .banner-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative; /* Asegura que el texto esté por encima del brillo */
+    z-index: 1;
+  }
+  
+  .banner-title {
+    font-size: 28px;
+    font-weight: 800; /* Un poco más de peso para que resalte */
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  
+  .banner-welcome-text {
+    font-size: 16px;
+    line-height: 1.6; /* Un poco más de espacio entre líneas para mejor lectura */
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+  
+  /* =========================================
+     TARJETAS DE BENEFICIOS
+     ========================================= */
+  .benefits-columns {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  .benefit-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    flex: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Pequeño efecto hover para los beneficios en PC */
+  .benefit-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .check-icon-gold svg {
+    width: 24px;
+    height: 24px;
+    color: var(--secondary-gold); 
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Le da volumen al ícono de check */
+  }
+  
+  .benefit-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: white;
+  }
+  
+  .benefit-info p {
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+  
+  /* =========================================
+     RESPONSIVE (MÓVIL)
+     ========================================= */
+  @media (max-width: 768px) {
+    .scholarship-banner {
+      padding: 30px 20px;
+    }
+  
+    .banner-title {
+      font-size: 22px;
+      text-align: left;
+      justify-content: flex-start;
+    }
+  
+    .banner-welcome-text {
+      text-align: left;
+    }
+  
+    .benefits-columns {
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .benefit-card {
+      background-color: rgba(255, 255, 255, 0.08); /* Ligeramente más transparente */
+      padding: 20px;
+      border-radius: var(--border-radius-md);
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.02); /* Sombra interna para dar profundidad */
+    }
+  }

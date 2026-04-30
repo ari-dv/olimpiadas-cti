@@ -4,8 +4,7 @@ export const SCHOLARSHIP_TYPES = {
 };
 
 export const ACADEMIC_PERIODS = [
-  { label: '2026 - 1', value: '2026-1' },
-  { label: '2025 - 2', value: '2025-2' },
+  { label: '2026 - 1', value: '2026-1' }
 ];
 
 export const PAGINATION_LIMITS = {

@@ -1,0 +1,144 @@
+
+.back-link-container{
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.main-content {
+  padding: 120px 5% 80px 5%;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.page-header-row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  margin-bottom: -45px;
+}
+
+.page-header-text {
+  flex: 1; 
+}
+
+.page-title {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 550px;
+  margin-bottom: 0; 
+}
+
+.level-selector-container {
+  display: flex;
+  gap: 25px;
+  flex-shrink: 0; 
+}
+
+.level-card {
+  padding: 12px 24px; /* Un poco menos de padding vertical para igualar la imagen */
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0; /* Borde sutilmente más delgado */
+  border-radius: 8px; /* Bordes ligeramente menos redondeados como en tu diseño */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.level-card:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.level-card.active {
+  background: #f4f7ff; /* Fondo celeste clarito */
+  border-color: #2b3a8c; /* Borde azul principal */
+  box-shadow: 0 4px 12px rgba(43, 58, 140, 0.08); /* Sombra suave */
+}
+
+.level-icon {
+  font-size: 22px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: #64748b; /* Gris oscuro por defecto */
+}
+
+.level-card.active .level-text {
+  color: #2b3a8c; /* Azul cuando está activo */
+}
+
+.courses-results-container .courses-title {
+  display: none;
+ }
+ 
+ @media (max-width: 900px) {
+  .page-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  
+  .level-selector-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .level-card {
+    justify-content: center; 
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 80px 5% 40px 5%;
+  }
+  .page-title { font-size: 28px; }
+  .page-subtitle { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  .page-title { font-size: 24px; }
+  .level-selector-container {
+    grid-template-columns: 1fr; /* En vertical para pantallas muy chicas */
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}

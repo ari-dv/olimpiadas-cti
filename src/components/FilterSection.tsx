@@ -1,107 +1,181 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import { FiSearch } from 'react-icons/fi';
 import './FilterSection.css';
+import type { FilterProps } from '../models/filter.model';
 
-interface DynamicFilters {
-  levels: string[];
-  schools: string[];
-  grades: string[];
-  sections: string[];
-}
+// 1. Diccionario para forzar el orden lógico de los grados
+const ORDEN_GRADOS: Record<string, number> = {
+  "PRIMERO": 1,
+  "SEGUNDO": 2,
+  "TERCERO": 3,
+  "CUARTO": 4,
+  "QUINTO": 5,
+  "SEXTO": 6
+};
 
-interface FilterProps {
-  options: DynamicFilters | null;
-  searchQuery: string;
-  selectedLevel: string;
-  selectedSchool: string;
-  selectedGrade: string;
-  selectedSection: string;
-  onSearchChange: (value: string) => void;
-  onLevelChange: (value: string) => void;
-  onSchoolChange: (value: string) => void;
-  onGradeChange: (value: string) => void;
-  onSectionChange: (value: string) => void;
-  onClearFilters: () => void;
-  isFiltering: boolean;
-}
-
-const FilterSection = ({ 
-  options, 
+const FilterSection = ({
+  options,
   searchQuery,
   selectedLevel,
   selectedSchool,
   selectedGrade,
-  selectedSection, 
-  onSearchChange, 
-  onLevelChange, 
-  onSchoolChange, 
-  onGradeChange, 
+  selectedSection,
+  onSearchChange,
+  onLevelChange,
+  onSchoolChange,
+  onGradeChange,
   onSectionChange,
   onClearFilters,
-  isFiltering
-}: FilterProps) => {
+  isFiltering,
+  totalResults
+}: FilterProps & { totalResults?: number }) => {
+
+  const [vpsImages, setVpsImages] = useState<{ url: string, filename: string }[]>([]);
+
+  useEffect(() => {
+    fetch('http://178.238.237.71:3001/list-images')
+      .then(res => res.json())
+      .then(data => {
+        if (data.images) setVpsImages(data.images);
+      })
+      .catch(err => console.error("Error cargando lista del VPS:", err));
+  }, []);
+
+  // 2. Filtramos y ordenamos los grados lógicamente usando useMemo para mejor rendimiento
+  const gradosOrdenados = useMemo(() => {
+    if (!options?.grades) return [];
+    
+    return options.grades
+      .filter(grade => !selectedLevel || String(grade.codlevel) === String(selectedLevel))
+      .sort((a, b) => {
+        const nombreA = a.name_large.trim().toUpperCase();
+        const nombreB = b.name_large.trim().toUpperCase();
+        
+        const valorA = ORDEN_GRADOS[nombreA] || 99;
+        const valorB = ORDEN_GRADOS[nombreB] || 99;
+        
+        return valorA - valorB;
+      });
+  }, [options?.grades, selectedLevel]);
 
   if (!options) return <p>Cargando filtros...</p>;
 
+  const getInitials = (name: string) => name.substring(0, 2).toUpperCase();
+
   return (
-    <section className="filter-container">
-      <div className="search-box">
-        <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input 
-          type="text" 
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Buscar por DNI o nombres y apellidos..." 
-          className="search-input"
-        />
+    <div className="filter-wrapper">
+      
+      {!selectedSchool && (
+        <div className="filter-hint reveal-animation">
+          <span className="hint-icon">👇</span>
+          <p>Selecciona un colegio para activar la búsqueda y ver los resultados oficiales</p>
+        </div>
+      )}
+
+      <div className="schools-header">
+        <h3>Selecciona tu Institución Educativa</h3>
+        {selectedSchool && (
+          <button className="change-school-btn" onClick={onClearFilters}>
+            Limpiar filtros
+          </button>
+        )}
       </div>
 
-      <div className="filter-actions-top" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+      <div className="schools-grid">
+        {options.schools.map((school) => {
+          const isActive = String(school.codschool) === String(selectedSchool);
+          const finalLogoUrl = (school as any).vpsImageUrl || (school as any).logo;
 
-        <div style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--primary-blue)', opacity: isFiltering ? 1 : 0, transition: 'opacity 0.2s' }}>
-          ⏳ Buscando...
-        </div>
-
-        <button className="clear-filters-btn" onClick={onClearFilters}>
-          Limpiar filtros
-        </button>
+          return (
+            <div 
+              key={school.codschool} 
+              className={`school-card ${isActive ? 'active' : ''}`}
+              onClick={() => onSchoolChange(String(school.codschool))}
+            >
+              <div className="school-logo">
+                {finalLogoUrl ? (
+                  <img 
+                    src={finalLogoUrl} 
+                    alt={`Logo ${school.name}`} 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <span>{getInitials(school.name)}</span>
+                )}
+              </div>
+              <span className="school-name">{school.name}</span>
+            </div>
+          );
+        })}
       </div>
+      
+      {selectedSchool && (totalResults ?? 0) > 0 && (
+        <div id="panel-filtros" className="filter-container reveal-animation">
+          <div className="results-found-info">
+            <p>Se encontraron <strong>{totalResults} resultados</strong></p>
+          </div>
 
-      <div className="dropdown-grid">
-        <div className="dropdown-group group-colegio">
-          <label>COLEGIO</label>
-          <select value={selectedSchool} onChange={(e) => onSchoolChange(e.target.value)}>
-            <option value="">Todas las instituciones</option>
-            {options.schools.map(school => <option key={school} value={school}>{school}</option>)}
-          </select>
-        </div>
+          <div className="secondary-filters-container">
+            <div className="dropdown-grid">
+              
+              <div className="dropdown-group">
+                <label>Nivel Educativo</label>
+                <select value={selectedLevel} onChange={(e) => onLevelChange(e.target.value)}>
+                  <option value="">Todos los niveles</option>
+                  {options.levels.map(level => (
+                    <option key={level.codlevel} value={level.codlevel}>{level.name_large}</option>
+                  ))}
+                </select>
+              </div>
 
-        <div className="dropdown-group group-nivel">
-          <label>NIVEL EDUCATIVO</label>
-          <select value={selectedLevel} onChange={(e) => onLevelChange(e.target.value)}>
-            <option value="">Todos los niveles</option>
-            {options.levels.map(level => <option key={level} value={level}>{level}</option>)}
-          </select>
-        </div>
+              <div className="dropdown-group">
+                <label style={{ opacity: selectedLevel ? 1 : 0.5 }}>Grado</label>
+                <select 
+                  value={selectedGrade} 
+                  onChange={(e) => onGradeChange(e.target.value)}
+                  disabled={!selectedLevel}
+                >
+                  <option value="">{selectedLevel ? "Todos los grados" : "Selecciona nivel"}</option>
+                  {/* 3. Mapeamos la lista ya ordenada */}
+                  {gradosOrdenados.map(grade => (
+                    <option key={grade.codgrade} value={grade.codgrade}>
+                      {grade.name_large.toUpperCase()}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-        <div className="dropdown-group group-grado">
-          <label>GRADO</label>
-          <select value={selectedGrade} onChange={(e) => onGradeChange(e.target.value)}>
-            <option value="">Todos los grados</option>
-            {options.grades.map(grade => <option key={grade} value={grade}>{grade}</option>)}
-          </select>
-        </div>
+              <div className="dropdown-group">
+                <label style={{ opacity: selectedGrade ? 1 : 0.5 }}>Sección</label>
+                <select 
+                  value={selectedSection} 
+                  onChange={(e) => onSectionChange(e.target.value)}
+                  disabled={!selectedGrade}
+                >
+                  <option value="">{selectedGrade ? "Todas las secciones" : "Selecciona grado"}</option>
+                  {options.sections.map(section => (
+                    <option key={section.codsection} value={section.codsection}>{section.name_large}</option>
+                  ))}
+                </select>
+              </div>
 
-        <div className="dropdown-group group-seccion">
-          <label>SECCIÓN</label>
-          <select value={selectedSection} onChange={(e) => onSectionChange(e.target.value)}>
-            <option value="">Todas las secciones</option>
-            {options.sections.map(section => <option key={section} value={section}>{section}</option>)}
-          </select>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+
+      {selectedSchool && (totalResults ?? 0) === 0 && (
+        <div className="filter-container reveal-animation">
+          <div className="results-found-info results-unavailable">
+            <p>⚠️ Sin resultados disponibles</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

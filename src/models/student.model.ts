@@ -1,12 +1,16 @@
+
 export interface Student {
-    id: string;
-    dni: string;
-    fullName: string;
-    level: string;
-    schoolName: string;
-    grade: string;
-    section: string;
-    score: number;
-    scholarshipType: 'BECA COMPLETA' | 'SEMI BECA' | 'REGULAR';
-    rank: number;
-  }
+  position: number;
+  score: string;
+  type_scholarship: string | null; 
+  student: {
+      dni: string;
+      fullname: string;
+  };
+  olympic: string;
+  period: string;
+  school: string;
+  grade: string;
+  section: string;
+  level?: string;
+}
