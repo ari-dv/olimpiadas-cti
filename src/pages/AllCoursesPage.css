@@ -1,9 +1,48 @@
 
-.back-link-container{
-  font-weight: 500;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
+   .back-link-container {
+    margin-top: 20px;
+    margin-bottom: 20px; /* Más espacio antes del título */
+    display: flex;
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #475569; /* Gris pizarra elegante */
+    text-decoration: none;
+    
+    /* Forma de cápsula tipo botón */
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 50px; 
+    
+    /* Sombras y transiciones suaves */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .back-link svg {
+    font-size: 18px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Efecto al pasar el mouse (o tocar en celular) */
+  .back-link:hover {
+    color: #2b3a8c; /* Cambia a tu azul principal */
+    border-color: #2b3a8c;
+    background-color: #f4f7ff; /* Fondo azul clarito */
+    box-shadow: 0 6px 15px rgba(43, 58, 140, 0.1);
+  }
+  
+  /* Magia en la flecha: se mueve hacia atrás indicando "regreso" */
+  .back-link:hover svg {
+    transform: translateX(-5px); 
+    color: #eb7601; /* Destello naranja solo en la flecha */
+  }
 
 .main-content {
   padding: 120px 5% 80px 5%;
@@ -100,12 +139,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    margin-bottom: 5px; /* 1. Quitamos el margen negativo en móviles para que no se superponga */
   }
   
   .level-selector-container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
+    position: relative; /* 2. Blindaje extra */
+    z-index: 10;        /* 3. Asegura que los botones SIEMPRE estén por encima de los cursos */
   }
 
   .level-card {

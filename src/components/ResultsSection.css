@@ -1,6 +1,4 @@
-/* =========================================
-   CONTENEDOR PRINCIPAL Y EMPTY STATE
-   ========================================= */
+
    .results-wrapper {
     width: 100%;
     margin-bottom: 40px;
@@ -135,119 +133,129 @@
     box-shadow: inset 4px 0 0 var(--primary-blue);
   }
   
-  /* =========================================
-     TARJETAS MÓVILES (MOBILE CARDS)
-     ========================================= */
-  .mobile-cards-container {
-    display: none;
-  }
+/*MOVIL*/
+
+     .mobile-cards-container {
+      display: none;
+    }
+    
+    .student-card {
+      background-color: var(--surface-white, #ffffff); 
+      border-radius: 12px; 
+      border: 2px solid rgba(2, 21, 42, 0.142); 
+      padding: 24px 16px; 
+      margin-bottom: 16px; 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .student-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+    
+    .highlighted-card {
+      border: 2px solid var(--primary-blue) !important;
+      box-shadow: 0 8px 20px rgba(43, 58, 140, 0.12) !important;
+      background-color: #f4f7ff; 
+      transform: translateY(-2px); 
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px; 
+    }
+    
+    .rank-text-style {
+      display: flex;
+      align-items: baseline;
+    }
+    
+    .rank-hash {
+      color: var(--secondary-gold); 
+      font-weight: 800; 
+      font-size: 15px; 
+      margin-right: 2px; 
+    }
+    
+    .rank-number {
+      color: var(--primary-blue);
+      font-weight: 900; 
+      font-size: 22px; 
+      line-height: 1; 
+    }
+    
+    .card-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a; 
+      margin: 0 0 4px 0; 
+      line-height: 1.2;
+    }
+    
+    .card-meta {
+      font-size: 13px; 
+      color: #475569; 
+      margin: 0 0 12px 0; 
+      line-height: 1.4;
+    }
+    
+
+    .card-school-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end; 
+      gap: 6px;
+      background-color: transparent; 
+      padding: 0; 
+    }
   
-  .student-card {
-    background-color: var(--surface-white, #ffffff); 
-    border-radius: 16px; 
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    padding: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .card-school-info span {
+      font-size: 11px; 
+      font-weight: 700; 
+      color: #334155a5; 
+      text-transform: uppercase;
+    }
+    
+    .card-footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px; 
+      margin-top: 4px;
+      border-top: 1px solid #e2e8f0; 
+    }
+    
+    .footer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
   
-  .student-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
+    .score-item {
+      border: none; 
+      padding: 0; 
+      text-align: left;
+    }
+    
+    .item-label {
+      font-size: 10px;
+      color: #64748b; 
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    
+    .highlight-score {
+      font-size: 20px; 
+      color: var(--primary-blue); 
+      font-weight: 900;
+    }
   
-  .highlighted-card {
-    border: 2px solid var(--primary-blue) !important;
-    box-shadow: 0 10px 25px rgba(43, 58, 140, 0.15) !important;
-    background-color: #f8fbff;
-    transform: translateY(-2px); 
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  
-  .rank-text-style {
-    display: flex;
-    align-items: baseline;
-  }
-  
-  .rank-hash {
-    color: var(--secondary-gold); 
-    font-weight: 800; 
-    font-size: 16px; 
-    margin-right: 2px; 
-  }
-  
-  .rank-number {
-    color: var(--primary-blue);
-    font-weight: 900; 
-    font-size: 24px; 
-    line-height: 1; 
-  }
-  
-  .card-name {
-    font-size: 18px;
-    font-weight: 800;
-    color: #1e293b;
-    margin: 5px 0 8px 0;
-    line-height: 1.3;
-  }
-  
-  .card-meta {
-    font-size: 14px;
-    color: #64748b; 
-    margin: 0 0 16px 0;
-    line-height: 1.5;
-  }
-  
-  .card-school-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #64748b;
-    background-color: #f1f5f9;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: 600;
-  }
-  
-  .school-icon {
-    color: #94a3b8;
-  }
-  
-  .card-footer-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 16px;
-    margin-top: 8px;
-    border-top: 1px solid #f1f5f9;
-  }
-  
-  .footer-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  
-  .item-label {
-    font-size: 10px;
-    color: #94a3b8;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-  }
-  
-  .highlight-score {
-    font-size: 22px; 
-    color: var(--primary-blue); 
-    font-weight: 900;
-  }
+    .card-footer-grid .scholarship-tag {
+      margin: 0;
+    }
   
   /* =========================================
      PAGINACIÓN

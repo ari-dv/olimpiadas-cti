@@ -215,11 +215,9 @@ const ResultsSection = ({
                       <span className="rank-number">{(currentPage - 1) * students.length + index + 1}</span>
                     </div>
                 
-                    <div className="card-school-info" style={{ backgroundColor: 'transparent', padding: 0 }}>
-                      <svg className="school-icon" viewBox="0 0 24 24" fill="currentColor" style={{ width: '14px', height: '14px' }}>
-                        <path d="M12 3L22 9V21H2V9L12 3M12 7.76L18.64 11H5.36L12 7.76M19 19V12.35L12 16.35L5 12.35V19H19Z"/>
-                      </svg>
-                      <span style={{ fontSize: '11px', fontWeight: '700' }}>{formattedSchool}</span>
+                    <div className="card-school-info" >
+                      
+                      <span>{formattedSchool}</span>
                     </div>
                   </div>
             
@@ -231,13 +229,13 @@ const ResultsSection = ({
                   </div>
 
                   <div className="card-footer-grid">
-                    <div className="footer-item score-item" style={{ border: 'none', padding: 0, textAlign: 'left' }}>
+                    <div className="footer-item score-item">
                       <span className="item-label">PUNTAJE</span>
                       <strong className="item-value highlight-score">{formattedScore}</strong>
                     </div>
 
                     {formattedScholarship !== '-' ? (
-                      <span className={`scholarship-tag ${getBadgeClass(s.type_scholarship)}`} style={{ margin: 0 }}>
+                      <span className={`scholarship-tag ${getBadgeClass(s.type_scholarship)}`}>
                         {formattedScholarship}
                       </span>
                     ) : null}
