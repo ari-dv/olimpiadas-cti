@@ -67,7 +67,7 @@ const Home = () => {
       />
       </div>
 
-      {data.shouldShowResults && (
+      {data.shouldShowResults && data.schoolTotalResults > 0 && (
         <div id="resultados">
       <ResultsSection 
             levelName={getLevelName()}

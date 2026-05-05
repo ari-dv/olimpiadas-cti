@@ -55,16 +55,21 @@ const ResultsSection = ({
     return debouncedSearch.trim() !== '' && formattedDNI !== '-' && formattedDNI === debouncedSearch.trim();
   };
 
-  let titleText = `Resultados - ${(levelName || 'Todos').toUpperCase()}`;
+ 
+  let titleText = ""; 
 
-  if (selectedGrade) {
-    const gradeOption = gradeOptions.find(g => String(g.codgrade) === String(selectedGrade));
-    const gradeName = gradeOption ? gradeOption.name_large.toUpperCase() : selectedGrade;
-    const sectionOption = sectionOptions.find(s => String(s.codsection) === String(selectedSection));
-    const sectionName = sectionOption ? sectionOption.name_large : '';
-    const hasSection = sectionName && sectionName.trim() !== '' && sectionName !== '-';
-    
-    titleText += ` - ${gradeName}${hasSection ? ` "${sectionName}"` : ''}`;
+  if (students && students.length > 0) {
+    titleText = `Resultados - ${(levelName || 'General').toUpperCase()}`;
+
+    if (selectedGrade) {
+      const gradeOption = gradeOptions.find(g => String(g.codgrade) === String(selectedGrade));
+      const gradeName = gradeOption ? gradeOption.name_large.toUpperCase() : selectedGrade;
+      const sectionOption = sectionOptions.find(s => String(s.codsection) === String(selectedSection));
+      const sectionName = sectionOption ? sectionOption.name_large : '';
+      const hasSection = sectionName && sectionName.trim() !== '' && sectionName !== '-';
+      
+      titleText += ` - ${gradeName}${hasSection ? ` "${sectionName}"` : ''}`;
+    }
   }
 
   return (
