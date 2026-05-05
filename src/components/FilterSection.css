@@ -360,20 +360,17 @@
 
   .dropdown-grid { 
     display: grid;
-    /* Creamos 2 columnas exactamente iguales */
     grid-template-columns: repeat(2, 1fr); 
     gap: 12px; 
   }
 
-  /* Hacemos que el PRIMER selector (Nivel) ocupe las 2 columnas */
   .dropdown-group:nth-child(1) {
     grid-column: 1 / -1;
   }
 
-  /* Achicamos un poquito los selectores para que Grado y Sección entren perfectos lado a lado */
   .dropdown-group select {
     padding: 10px 12px;
     font-size: 13px;
-    background-size: 14px; /* Hace la flechita un poco más pequeña */
+    background-size: 14px;
   }
 }
