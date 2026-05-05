@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { FiAward, FiCheckCircle } from 'react-icons/fi';
 import Hero from '../components/Hero';
 import FilterSection from '../components/FilterSection';
@@ -16,6 +16,22 @@ const Home = () => {
   const scrollToNextSteps = () => {
     nextStepsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (data.selectedSchool && data.schoolTotalResults !== undefined) {
+      setTimeout(() => {
+        const panel = document.getElementById('panel-filtros');
+        if (panel) {
+           const elementPosition = panel.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - 320;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }, 50);
+    }
+  }, [data.selectedSchool, data.schoolTotalResults]);
 
   return (
     <main className="main-content" >

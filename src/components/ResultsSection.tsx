@@ -1,5 +1,7 @@
 import './ResultsSection.css';
-import type { Student } from '../models/student.model';
+import { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
+import type { Student, Props } from '../models/student.model';
 import { SCHOLARSHIP_TYPES } from '../constants/theme';
 import {
   formatDNI,
@@ -12,23 +14,7 @@ import {
   formatScore
 } from '../utils/formatters';
 import { FiInbox, FiSearch, FiUsers } from 'react-icons/fi'; 
-
-interface Props {
-  students: Student[];
-  totalResults: number;
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  onGoToInfo: () => void;
-  searchQuery: string;
-  onSearchChange: (query: string) => void; 
-  isFiltering?: boolean; 
-  isLoading?: boolean;
-  selectedSection?: string;
-  selectedGrade?: string;
-  gradeOptions?: any[];
-  sectionOptions?: any[];
-}
+import SkeletonLoader from './Skeleton';
 
 const ResultsSection = ({ 
   students, 
@@ -47,6 +33,16 @@ const ResultsSection = ({
   sectionOptions = []
 }: Props) => {
 
+  // Debounce la búsqueda
+  const debouncedSearch = useDebounce(searchQuery, 400);
+
+  // Trigger búsqueda solo cuando debouncedSearch cambia
+  useEffect(() => {
+    if (debouncedSearch !== searchQuery) {
+      onPageChange(1);
+    }
+  }, [debouncedSearch]);
+
   const getBadgeClass = (type: string | null) => {
     if (!type) return '';
     if (type === SCHOLARSHIP_TYPES.FULL || type === 'BC') return 'badge-full';
@@ -57,10 +53,9 @@ const ResultsSection = ({
   const isExactMatch = (dni?: string) => {
     if (!dni) return false;
     const formattedDNI = formatDNI(dni);
-    return searchQuery.trim() !== '' && formattedDNI !== '-' && formattedDNI === searchQuery.trim();
+    return debouncedSearch.trim() !== '' && formattedDNI !== '-' && formattedDNI === debouncedSearch.trim();
   };
 
-  // Lógica dinámica del título corregida
   let titleText = "Resultados Oficiales";
   if (!selectedGrade) {
     titleText = "Resultados - Todos";
@@ -89,14 +84,14 @@ const ResultsSection = ({
         </div>
 
         <div className="results-search-container">
-        <div className="search-box">
+          <div className="search-box">
             <FiSearch className="search-icon" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => {
                 const value = e.target.value;
-                if (/^\d*$/.test(value)) {
+                if (/^\d*$/.test(value) && value.length <= 8) {
                   onSearchChange(value);
                 }
               }}
@@ -107,18 +102,14 @@ const ResultsSection = ({
             {searchQuery && (
               <span className="search-clear" onClick={() => onSearchChange('')}>✕</span>
             )}
-          
           </div>
         </div>
       </div>
 
       {/* 2. LÓGICA DE CARGA Y TABLAS */}
       {isLoading && currentPage === 1 ? (
-        <div className="transparent-loader" style={{ padding: '80px 20px' }}>
-          <p className="loading-text">
-            Cargando resultados<span className="dot">.</span><span className="dot">.</span><span className="dot">.</span>
-          </p>
-        </div>
+          <SkeletonLoader />
+        
       ) : (!students || students.length === 0) ? (
         <div className="empty-state reveal-animation">
           <span className="empty-state-icon"><FiInbox /></span>
@@ -215,8 +206,7 @@ const ResultsSection = ({
                       <span className="rank-number">{(currentPage - 1) * students.length + index + 1}</span>
                     </div>
                 
-                    <div className="card-school-info" >
-                      
+                    <div className="card-school-info">
                       <span>{formattedSchool}</span>
                     </div>
                   </div>

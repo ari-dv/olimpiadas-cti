@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { useState, useEffect, useMemo } from 'react';
 import './FilterSection.css';
 import type { FilterProps } from '../models/filter.model';
 
-// 1. Diccionario para forzar el orden lógico de los grados
 const ORDEN_GRADOS: Record<string, number> = {
   "PRIMERO": 1,
   "SEGUNDO": 2,
@@ -41,7 +39,12 @@ const FilterSection = ({
       .catch(err => console.error("Error cargando lista del VPS:", err));
   }, []);
 
-  // 2. Filtramos y ordenamos los grados lógicamente usando useMemo para mejor rendimiento
+   useEffect(() => {
+    if ((totalResults ?? 0) > 0 && options?.levels?.length === 1 && !selectedLevel) {
+      onLevelChange(String(options.levels[0].codlevel));
+    }
+  }, [options?.levels, selectedLevel, onLevelChange, totalResults]);
+ 
   const gradosOrdenados = useMemo(() => {
     if (!options?.grades) return [];
     
@@ -73,7 +76,7 @@ const FilterSection = ({
       )}
 
       <div className="schools-header">
-        <h3>Selecciona tu Institución Educativa</h3>
+          <h3>Selecciona tu Institución Educativa</h3>
         {selectedSchool && (
           <button className="change-school-btn" onClick={onClearFilters}>
             Limpiar filtros

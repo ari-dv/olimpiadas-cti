@@ -66,12 +66,6 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   }
   
-  .school-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
-    border-color: #e2e8f0;
-  }
-  
   /* Estado Activo: Borde azul y resplandor */
   .school-card.active {
     border-color: var(--primary-blue, #2b3a8c);
@@ -326,18 +320,60 @@
     }
   }
   
-  @media (max-width: 768px) {
-    .schools-grid { 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 12px;
-    }
-    
-    .filter-container {
-      padding: 20px;
-    }
-  
-    .dropdown-grid { 
-      grid-template-columns: 1fr; 
-      gap: 16px;
-    }
+@media (hover: none) {
+  .school-card:active {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+    border-color: #e2e8f0;
   }
+}
+
+@media (max-width: 768px) {
+  .schools-grid { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .school-card {
+    padding: 16px 8px; 
+    border-radius: 12px;
+  }
+
+  .school-logo {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px; 
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  .school-name {
+    font-size: 13px; 
+    line-height: 1.2;
+  }
+  
+  .filter-container {
+    padding: 20px;
+  }
+
+  .dropdown-grid { 
+    display: grid;
+    /* Creamos 2 columnas exactamente iguales */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; 
+  }
+
+  /* Hacemos que el PRIMER selector (Nivel) ocupe las 2 columnas */
+  .dropdown-group:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  /* Achicamos un poquito los selectores para que Grado y Sección entren perfectos lado a lado */
+  .dropdown-group select {
+    padding: 10px 12px;
+    font-size: 13px;
+    background-size: 14px; /* Hace la flechita un poco más pequeña */
+  }
+}
