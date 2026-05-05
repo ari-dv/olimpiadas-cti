@@ -16,7 +16,8 @@ import {
 import { FiInbox, FiSearch, FiUsers } from 'react-icons/fi'; 
 import SkeletonLoader from './Skeleton';
 
-const ResultsSection = ({ 
+const ResultsSection = ({
+  levelName = "General",
   students, 
   totalResults, 
   currentPage, 
@@ -33,10 +34,8 @@ const ResultsSection = ({
   sectionOptions = []
 }: Props) => {
 
-  // Debounce la búsqueda
   const debouncedSearch = useDebounce(searchQuery, 400);
 
-  // Trigger búsqueda solo cuando debouncedSearch cambia
   useEffect(() => {
     if (debouncedSearch !== searchQuery) {
       onPageChange(1);
@@ -56,22 +55,21 @@ const ResultsSection = ({
     return debouncedSearch.trim() !== '' && formattedDNI !== '-' && formattedDNI === debouncedSearch.trim();
   };
 
-  let titleText = "Resultados Oficiales";
-  if (!selectedGrade) {
-    titleText = "Resultados - Todos";
-  } else if (selectedGrade) {
+  let titleText = `Resultados - ${(levelName || 'Todos').toUpperCase()}`;
+
+  if (selectedGrade) {
     const gradeOption = gradeOptions.find(g => String(g.codgrade) === String(selectedGrade));
     const gradeName = gradeOption ? gradeOption.name_large.toUpperCase() : selectedGrade;
     const sectionOption = sectionOptions.find(s => String(s.codsection) === String(selectedSection));
     const sectionName = sectionOption ? sectionOption.name_large : '';
     const hasSection = sectionName && sectionName.trim() !== '' && sectionName !== '-';
-    titleText = `Resultados - ${gradeName}${hasSection ? ` "${sectionName}"` : ''}`;
+    
+    titleText += ` - ${gradeName}${hasSection ? ` "${sectionName}"` : ''}`;
   }
 
   return (
     <section className="results-wrapper">
       
-      {/* 1. CABECERA PREMIUM */}
       <div className="results-top-header reveal-animation">
         <div className="results-title-group">
           <h2>{titleText}</h2>
@@ -106,7 +104,6 @@ const ResultsSection = ({
         </div>
       </div>
 
-      {/* 2. LÓGICA DE CARGA Y TABLAS */}
       {isLoading && currentPage === 1 ? (
           <SkeletonLoader />
         

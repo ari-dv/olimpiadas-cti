@@ -16,6 +16,7 @@ export interface Student {
 }
 
 export interface Props {
+  levelName?: string;
   students: Student[];
   totalResults: number;
   currentPage: number;

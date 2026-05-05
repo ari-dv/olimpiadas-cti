@@ -33,6 +33,17 @@ const Home = () => {
     }
   }, [data.selectedSchool, data.schoolTotalResults]);
 
+  const getLevelName = () => {
+    if (!data.selectedLevel || !data.dynamicOptions?.levels) return "Todos los niveles";
+    
+    const nivelEncontrado = data.dynamicOptions.levels.find(
+      l => String(l.codlevel) === String(data.selectedLevel)
+    );
+    
+    return nivelEncontrado ? nivelEncontrado.name_large : "Todos los niveles";
+  };
+  
+
   return (
     <main className="main-content" >
       <Hero periods={ACADEMIC_PERIODS.map(p => p.label)} />
@@ -59,6 +70,7 @@ const Home = () => {
       {data.shouldShowResults && (
         <div id="resultados">
       <ResultsSection 
+            levelName={getLevelName()}
             students={data.finalStudentsToDisplay}
             totalResults={data.pagination.total}
             currentPage={data.currentPage}
