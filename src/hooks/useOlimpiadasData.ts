@@ -139,8 +139,12 @@ export const useOlimpiadasData = () => {
       };
 
       const query = debouncedSearchQuery.trim();
-      if (query && /^\d+$/.test(query)) {
-        params.dni = query;
+      if (query) {
+        if (/^\d+$/.test(query)) {
+          params.dni = query; 
+        } else {
+          params.name = query; 
+        }
       }
 
       const apiCall = getStudentResults(params);

@@ -11,7 +11,7 @@ interface CoursesSectionProps {
 }
 
 const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
-  const phoneNumber = "51997321063";
+  const phoneNumber = "51916413447";
   const [courses, setCourses] = useState<Course[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -19,7 +19,6 @@ const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
     const fetchCourses = async () => {
       try {
         const data = await getCourses('/data/coursesData.json');
-        // Mezclamos los cursos apenas llegan de la API
         const shuffled = [...data].sort(() => Math.random() - 0.5);
         setCourses(shuffled);
       } catch (error) {
@@ -31,7 +30,6 @@ const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
     fetchCourses();
   }, []);
 
-  // Filtrado dinámico basado en las props
   const displayedCourses = useMemo(() => {
     let result = [...courses];
     if (level) {
@@ -45,8 +43,20 @@ const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
 
   return (
     <section className="courses-section">
+
+      <div className="start-date-banner">
+        <FiCalendar className="start-date-icon" />
+        <div className="start-date-text">
+          <span className="start-date-label">Inicio de clases:</span>
+          <span className="start-date-value">23 de Mayo</span>
+        </div>
+      </div>
+
       <div className="courses-header">
-        <h2 className="courses-title">Cursos Disponibles 2026</h2>
+        <div className="courses-title-wrapper">
+          <h2 className="courses-title">Cursos Disponibles</h2>
+        </div>
+
         {limit && (
           <Link to="/cursos" className="view-all-desktop">
             Ver todos <FiArrowRight className="icon-arrow-right" />
@@ -59,7 +69,7 @@ const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
       ) : (
         <div className="courses-grid">
           {displayedCourses.map((course) => {
-            const message = `Hola, quiero solicitar información sobre el curso de ${course.title}.`;
+            const message = `Hola, quiero inscribirme en el curso de ${course.title}.`;
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             const finalImageUrl = (course as any).vpsImageUrl || course.imgSrc;
 
@@ -105,7 +115,7 @@ const CoursesSection = ({ limit, level }: CoursesSectionProps) => {
       )}
 
       {limit && (
-        <Link to="/cursos" className="view-all-mobile">Ver más cursos</Link>
+        <Link to="/cursos" className="view-all-mobile">Ver más cursos    🡺 </Link>
       )}
     </section>
   );

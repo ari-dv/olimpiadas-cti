@@ -1,7 +1,4 @@
-/* =========================================
-   CONTENEDOR GLOBAL Y CABECERA
-   ========================================= */
-   .filter-wrapper {
+  .filter-wrapper {
     width: 100%;
     margin-bottom: 40px;
   }
@@ -15,7 +12,7 @@
   }
   
   .schools-header h3 {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
     color: var(--primary-blue, #2b3a8c);
     margin: 0;
@@ -42,9 +39,7 @@
     transform: translateY(-1px);
   }
   
-  /* =========================================
-     GRILLA DE COLEGIOS (TARJETAS)
-     ========================================= */
+
   .schools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -340,6 +335,10 @@
     padding: 16px 8px; 
     border-radius: 12px;
   }
+
+  .schools-header h3 {
+    font-size: 20px;
+    }
 
   .school-logo {
     width: 48px;

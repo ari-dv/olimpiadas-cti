@@ -11,9 +11,10 @@ import {
   formatSchoolName,
   formatGrade,
   formatScholarshipType,
-  formatScore
+  formatScore,
+  formatGradeAbbreviation
 } from '../utils/formatters';
-import { FiInbox, FiSearch, FiUsers } from 'react-icons/fi'; 
+import { FiAward, FiInbox, FiSearch, FiUsers } from 'react-icons/fi'; 
 import SkeletonLoader from './Skeleton';
 
 const ResultsSection = ({
@@ -136,7 +137,6 @@ const ResultsSection = ({
                   <th>PUESTO</th>
                   <th>DNI</th>
                   <th>ESTUDIANTE</th>
-                  <th>NIVEL</th>
                   <th>COLEGIO</th>
                   <th>GRADO</th>
                   <th>SECCIÓN</th>
@@ -165,10 +165,11 @@ const ResultsSection = ({
                       </td>
                       <td>{formattedDNI}</td>
                       <td className="col-nombre">{formattedName}</td>
-                      <td>{formattedLevel}</td>
                       <td>{formattedSchool}</td>
-                      <td>{formattedGrade}</td>
-                      <td>{formattedSection}</td>
+                      <td className="text-center font-bold col-grade">
+                        {formatGradeAbbreviation(s.grade)}
+                      </td>
+                      <td className="col-section">{formattedSection}</td>
                       <td className="col-puntaje">{formattedScore}</td>
                       <td>
                         {formattedScholarship !== '-' ? (
@@ -226,11 +227,14 @@ const ResultsSection = ({
                       <strong className="item-value highlight-score">{formattedScore}</strong>
                     </div>
 
-                    {formattedScholarship !== '-' ? (
+                  {formattedScholarship !== '-' ? (
+                    <div className="scholarship-container">
+                      <FiAward className="scholarship-external-icon" />
                       <span className={`scholarship-tag ${getBadgeClass(s.type_scholarship)}`}>
                         {formattedScholarship}
                       </span>
-                    ) : null}
+                    </div>
+                  ) : null}
                   </div>
                 </div>
               );

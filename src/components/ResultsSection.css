@@ -34,12 +34,9 @@
     line-height: 1.6;
   }
   
-  /* =========================================
-     ETIQUETAS (BADGES) PREMIUM
-     ========================================= */
   .badge, .scholarship-tag {
     padding: 6px 12px;
-    border-radius: 20px; /* Bordes más redondeados tipo píldora */
+    border-radius: 20px; 
     font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
@@ -47,16 +44,15 @@
     letter-spacing: 0.5px;
   }
   
-  /* Estilo "Pastel + Texto Fuerte" (Modern UI) */
-  .badge-full {
+   .badge-full {
     background-color: #fef3c7; /* Oro muy suave */
     color: #b45309; /* Naranja oscuro */
     border: 1px solid #fde68a;
   }
   
   .badge-half {
-    background-color: #ede9fe; /* Púrpura muy suave */
-    color: #5b21b6; /* Púrpura oscuro */
+    background-color: #ede9fe; 
+    color: #5b21b6; 
     border: 1px solid #ddd6fe;
   }
   
@@ -65,9 +61,6 @@
     color: #64748b;
   }
   
-  /* =========================================
-     TABLA DESKTOP (ESCRITORIO)
-     ========================================= */
   .desktop-table-container {
     background-color: var(--surface-white, #ffffff); 
     border-radius: 16px;
@@ -85,7 +78,7 @@
   .results-table th {
     background: linear-gradient(135deg, var(--primary-blue) 0%, #1e2a6b 100%);
     color: white;
-    padding: 12px 16px; 
+    padding: 12px 14px; 
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -115,9 +108,14 @@
     font-size: 15px;
   }
   
+  .results-table td.col-grade, td.col-section{
+    text-align: center;
+  }
+  
   .results-table td.col-puntaje {
     color: var(--primary-blue);
     font-weight: 800;
+    text-align: center;
     font-size: 16px;
   }
   
@@ -132,8 +130,7 @@
   .highlighted-row td:first-child {
     box-shadow: inset 4px 0 0 var(--primary-blue);
   }
-  
-/*MOVIL*/
+
 
      .mobile-cards-container {
       display: none;
@@ -196,8 +193,8 @@
     }
     
     .card-meta {
-      font-size: 13px; 
-      color: #475569; 
+      font-size: 15px; 
+      color: #3b4a60; 
       margin: 0 0 12px 0; 
       line-height: 1.4;
     }
@@ -227,8 +224,30 @@
       margin-top: 4px;
       border-top: 1px solid #e2e8f0; 
     }
-    
+
+        
+    .scholarship-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px; 
+    }
+
+    .scholarship-external-icon {
+      color: #eab308; 
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+     .scholarship-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+        
     .footer-item {
+      align-items: center;
       display: flex;
       flex-direction: column;
       gap: 0px;
@@ -241,14 +260,14 @@
     }
     
     .item-label {
-      font-size: 10px;
+      font-size: 11px;
       color: #64748b; 
       font-weight: 800;
       letter-spacing: 0.5px;
     }
     
     .highlight-score {
-      font-size: 20px; 
+      font-size: 22px; 
       color: var(--primary-blue); 
       font-weight: 900;
     }
@@ -257,9 +276,6 @@
       margin: 0;
     }
   
-  /* =========================================
-     PAGINACIÓN
-     ========================================= */
   .pagination-container {
     display: flex;
     justify-content: space-between;
@@ -382,7 +398,7 @@
     overflow: hidden;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-    padding-left: 16px; /* <-- CRÍTICO: Empuja todo el contenido (lupa y texto) hacia adentro */
+    padding-left: 16px; 
   }
   
   .search-box:focus-within {
@@ -394,8 +410,8 @@
     color: var(--primary-blue, #2b3a8c);
     font-size: 20px;
     flex-shrink: 0;
-    position: static; /* <-- CRÍTICO: Anula cualquier "position: absolute" viejo que causaba que se monte sobre el texto */
-    margin-right: 12px; /* <-- Da un respiro/espacio exacto entre la lupa y la primera letra del texto */
+    position: static; 
+    margin-right: 12px; 
     pointer-events: none;
   }
   
@@ -431,6 +447,11 @@
   }
   
 @media (max-width: 768px) {
+
+  .badge, .scholarship-tag {
+    font-size: 13px;
+   }
+
   .results-top-header {
     flex-direction: column;
     align-items: flex-start;

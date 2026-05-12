@@ -69,10 +69,10 @@
 }
 
 .page-title {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: #1e293b;
+  color: var(--primary-blue, #2b3a8c);
   letter-spacing: -0.5px;
 }
 

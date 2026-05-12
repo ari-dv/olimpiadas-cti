@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { FiAward, FiCheckCircle } from 'react-icons/fi';
 import Hero from '../components/Hero';
 import FilterSection from '../components/FilterSection';
@@ -7,15 +7,34 @@ import CoursesSection from '../components/CoursesSection';
 import SupportSection from '../components/SupportSection';
 import { ACADEMIC_PERIODS } from '../constants/theme';
 import { useOlimpiadasData } from '../hooks/useOlimpiadasData';
+import { getStudentResults } from '../services/api.service';
 
 const Home = () => {
   const nextStepsRef = useRef<HTMLDivElement>(null);
   
   const data = useOlimpiadasData();
 
+  const [totalRealParticipants, setTotalRealParticipants] = useState(0);
+
   const scrollToNextSteps = () => {
     nextStepsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const fetchGlobalTotal = async () => {
+      try {
+
+        const response = await getStudentResults({ per_page: 1 });
+        if (response.success && response.pagination) {
+          setTotalRealParticipants(response.pagination.total);
+        }
+      } catch (error) {
+        console.error("Error obteniendo total global de participantes", error);
+      }
+    };
+    
+    fetchGlobalTotal();
+  }, []);
 
   useEffect(() => {
     if (data.selectedSchool && data.schoolTotalResults !== undefined) {
@@ -43,10 +62,17 @@ const Home = () => {
     return nivelEncontrado ? nivelEncontrado.name_large : "Todos los niveles";
   };
   
+  const totalSchools = data.dynamicOptions?.schools?.length || 0;
 
   return (
     <main className="main-content" >
-      <Hero periods={ACADEMIC_PERIODS.map(p => p.label)} />
+      
+      <Hero 
+        periods={ACADEMIC_PERIODS.map(p => p.label)} 
+        totalSchools={totalSchools}
+        totalParticipants={totalRealParticipants} 
+        totalScholarships={150}  
+      />
 
       <div id="buscar-resultados">
       <FilterSection 

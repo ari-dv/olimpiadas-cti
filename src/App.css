@@ -1,7 +1,7 @@
   .scholarship-banner {
-    background: linear-gradient(135deg, #2b3a8c 0%, #3b4eb8 50%, #1e2a6b 100%);
+    background: linear-gradient(135deg, #2b3a8c 0%, #3b4eb8 50%, #1e2a6bc1 100%);
     color: white;
-    padding: 48px 32px; /* Un poco más de respiro vertical */
+    padding: 40px 30px; 
     border-radius: 16px;
     margin-top: 30px; 
     width: 100%;
@@ -43,7 +43,7 @@
   }
 
   .banner-title {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 800;
     margin-bottom: 12px;
     display: flex;
@@ -55,7 +55,7 @@
   }
 
   .banner-title svg {
-    font-size: 36px;
+    font-size: 28px;
     color: #ffd700 !important;
     filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.4));
   }
@@ -103,9 +103,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px; /* Ícono más grande */
+    width: 40px; 
     height: 40px;
-    background: #fffbeb; /* Fondo amarillo muy suave */
+    background: #fffbeb; 
     border-radius: 50%;
     margin-top: -4px;
   }
@@ -126,22 +126,22 @@
     font-size: 18px;
     font-weight: 800;
     margin: 0 0 10px 0;
-    color: #fefefe; /* Texto oscuro */
+    color: #ffdd00; 
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .benefit-info p {
-    font-size: 14.5px;
+    font-size: 16px;
     margin: 0;
     line-height: 1.6;
-    color: #ffffff; /* Gris oscuro para lectura cómoda */
+    color: #ffffff; 
   }
 
   .benefit-info p strong {
     color: #25283f; 
     font-weight: 800;
-    background: #f1c40f; /* Resaltado amarillo */
+    background: #d7ecf3;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 15px;

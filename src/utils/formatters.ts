@@ -103,12 +103,9 @@ export const formatDNI = (dni: string | undefined | null): string => {
     
     const typeStr = String(type).trim().toUpperCase();
     
-    if (!typeStr || typeStr === 'NULL') {
-      return '-';
-    }
-
+    if (!typeStr || typeStr === 'NULL' || typeStr === 'SB') {return '-';}
     if (typeStr === 'BC') return 'BECA COMPLETA';
-    if (typeStr === 'SB' || typeStr === 'BM') return 'SEMI BECA';
+    if (typeStr === 'BM') return 'SEMI BECA';
     
     return typeStr;
   };
@@ -128,4 +125,22 @@ export const formatDNI = (dni: string | undefined | null): string => {
     }
     
     return '-';
+  };
+
+  export const formatGradeAbbreviation = (grade: string | undefined | null): string => {
+    if (!grade) return '-';
+    
+    const gradeUpper = grade.trim().toUpperCase();
+    
+    const map: Record<string, string> = {
+      'PRIMERO': '1°',
+      'SEGUNDO': '2°',
+      'TERCERO': '3°',
+      'CUARTO': '4°',
+      'QUINTO': '5°',
+      'SEXTO': '6°'
+    };
+  
+    // Retorna el valor mapeado o el original si no lo encuentra
+    return map[gradeUpper] || gradeUpper;
   };

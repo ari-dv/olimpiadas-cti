@@ -14,7 +14,7 @@ const SupportSection = () => {
             </div>
             <div className="support-text">
               <h3 className="support-title">INFORMES E INSCRIPCIONES</h3>
-              <p className="support-subtitle">¿Tienes dudas sobre tus resultados o becas?</p>
+              <p className="support-subtitle">¿Tienes dudas sobre las becas o cursos?</p>
             </div>
           </div>
 
@@ -22,13 +22,26 @@ const SupportSection = () => {
             <div className="support-contact">
               <span className="support-label">TELÉFONO / WHATSAPP</span>
               <a 
-                href="https://wa.me/51997321063?text=Hola,%20quiero%20información%20sobre%20las%20becas%20e%20inscripciones%20del%20CTI." 
+                href="https://wa.me/51916413447?text=Hola,%20quiero%20información%20sobre%20los%20cursos%20e%20inscripciones%20del%20CTI." 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-action-whatsapp"
               >
                 <FaWhatsapp className="whatsapp-icon" />
-                +51 997 321 063
+                +51 916 413 447
+              </a>
+            </div>
+
+            <div className="support-contact">
+              <span className="support-label">.</span>
+              <a 
+                href="https://wa.me/51947724579?text=Hola,%20quiero%20información%20sobre%20los%20cursos%20e%20inscripciones%20del%20CTI." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-action-whatsapp"
+              >
+                <FaWhatsapp className="whatsapp-icon" />
+                +51 947 724 579
               </a>
             </div>
 

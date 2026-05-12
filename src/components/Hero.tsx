@@ -1,17 +1,25 @@
 import './Hero.css';
 import { useMemo, useCallback } from 'react';
 import logoOlimpiadas from '../assets/logo-olimpiadas.png';
+import { FiUsers, FiHome, FiAward } from 'react-icons/fi';
 
 interface HeroProps {
   periods: string[];
   onPeriodChange?: (period: string) => void;
   defaultPeriod?: string;
+  // --- NUEVAS PROPS PARA ESTADÍSTICAS ---
+  totalSchools?: number;
+  totalParticipants?: number;
+  totalScholarships?: number;
 }
 
 const Hero = ({ 
   periods, 
   onPeriodChange,
-  defaultPeriod = periods[0] 
+  defaultPeriod = periods[0],
+  totalSchools = 0,
+  totalParticipants = 0,
+  totalScholarships = 0
 }: HeroProps) => {
   
   const periodOptions = useMemo(() => {
@@ -29,7 +37,9 @@ const Hero = ({
   }, [onPeriodChange]);
 
   return (
+    
     <section className="hero-section">
+
       <div className="hero-text">
         <h1 className="sr-only">Resultados Olimpiadas Escolares de Conocimientos</h1>
 
@@ -60,6 +70,43 @@ const Hero = ({
           {periodOptions}
         </select>
       </div>
+
+      <div className="hero-stats">
+        <div className="stat-item">
+          <div className="stat-text">
+            <span className="stat-number">
+              {totalSchools > 0 ? totalSchools : '...'}
+            </span>
+            <span className="stat-label">Colegios</span>
+          </div>
+        </div>
+        
+        <div className="stat-divider"></div>
+
+        <div className="stat-item">
+          <div className="stat-text">
+            <span className="stat-number">
+              {totalParticipants > 0 ? totalParticipants.toLocaleString() : '...'}
+            </span>
+            <span className="stat-label">Participantes</span>
+          </div>
+        </div>
+
+        <div className="stat-divider"></div>
+
+        <div className="stat-item">
+           <div className="stat-text">
+            <span className="stat-number">
+              {totalScholarships > 0 ? totalScholarships : '...'} +
+            </span>
+            <span className="stat-label">Becas Ganadas</span>
+          </div>
+          <div className="stat-icon-wrapper"><FiAward className="stat-icon" /></div>
+         
+        </div>
+      </div>
+      
+
     </section>
   );
 };
