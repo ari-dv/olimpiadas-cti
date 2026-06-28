@@ -1,0 +1,283 @@
+/* ==================================================
+   1. RESET TOTAL DE SCROLL (La página manda)
+   ================================================== */
+   .page-inscripcion-wrapper {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    /* IMPORTANTE: align-items flex-start evita que flexbox lo aplaste */
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  
+  .wizard-container {
+    width: 100%;
+    max-width: 1000px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    font-family: inherit !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .wizard-body {
+    padding: 40px 50px 50px 50px;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  /* ==================================================
+     2. LAYOUT Y ANIMACIONES
+     ================================================== */
+  @keyframes slideFadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+  .step-content, .slide-up { animation: slideFadeIn 0.3s ease-out forwards; }
+  
+  .text-center { text-align: center; }
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
+  .mt-2 { margin-top: 0.5rem; }
+  .mt-3 { margin-top: 1rem; }
+  .mt-4 { margin-top: 1.5rem; }
+  .mb-4 { margin-bottom: 1.5rem; }
+  .mx-2 { margin-left: 0.5rem; margin-right: 0.5rem; }
+  .w-full { width: 100%; }
+  .font-bold { font-weight: 700; }
+  .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  
+  /* ==================================================
+     3. CABECERA Y STEPPER
+     ================================================== */
+  .wizard-header {
+    padding: 24px 30px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+    position: relative;
+  }
+  .wizard-header .btn-cerrar { position: absolute !important; top: 16px; right: 20px; width: 3rem !important; height: 3rem !important; }
+  .wizard-header h2 { margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+  
+  .stepper-indicador { display: flex; align-items: center; justify-content: center; gap: 16px; font-weight: 800; color: #94a3b8; }
+  .stepper-indicador span.activo { color: var(--primary-blue); font-weight: 700; }
+  .stepper-indicador .linea { height: 3px; width: 40px; background: #e2e8f0; border-radius: 2px; }
+  
+  /* FIX PRIME REACT */
+  .wizard-container .p-inputtext { padding: 12px 16px !important; font-size: 1rem !important; border-radius: 12px !important; border: 2px solid #e2e8f0; width: 100%; }
+  .wizard-container .p-inputtext:enabled:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2) !important; }
+  .wizard-container .p-inputgroup .p-inputtext { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; }
+  .wizard-container .p-inputgroup .p-button { padding: 0 20px !important; border-top-right-radius: 12px !important; border-bottom-right-radius: 12px !important; }
+  
+  /* ==================================================
+     4. PASO 1 - IDENTIDAD
+     ================================================== */
+  .identidad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .identidad-form .icon-wrapper { display: inline-flex; justify-content: center; align-items: center; width: 60px; height: 60px; background: #e0f2fe; color: #0284c7; border-radius: 16px; font-size: 2rem; margin-bottom: 16px; }
+  .identidad-form h3 { margin: 0 0 8px 0; font-size: 1.4rem; color: #0f172a; font-weight: 800; }
+  .identidad-form p { color: #64748b; margin: 0 0 16px 0; line-height: 1.5; }
+  
+  .estado-espera { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f8fafc; border: 2px dashed #e2e8f0; border-radius: 20px; height: 100%; min-height: 250px; color: #94a3b8; }
+  .estado-espera i { font-size: 3rem; margin-bottom: 16px; color: #cbd5e1; }
+  
+  .resultado-perfil { background: white; border: 2px solid #e2e8f0; border-radius: 20px; padding: 24px; box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05); }
+  .perfil-nombre { font-size: 1.2rem; font-weight: 800; color: #1e293b; margin-bottom: 16px; }
+
+  .beca-alerta { padding: 12px 16px; border-radius: 10px; font-weight: 700; display: flex; justify-content: center; gap: 8px; font-size: 0.95rem; }
+  .beca-alerta.success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+  .beca-alerta.neutral { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+  
+.contenedor-boton-centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 24px;
+ 
+}
+
+.color {
+  color: #7f7a7e !important;
+}
+
+
+
+  .campo-grupo label { font-size: 0.85rem; font-weight: 700; color: #475569; display: block; margin-bottom: 6px; }
+  .campo-grupo .req { color: #e11d48; }
+
+  /* Cambiar el color del placeholder de los inputs de contacto */
+.campos-contacto .p-inputtext::placeholder {
+  color: #a1a1aa; /* Cambia este código hexadecimal por el color que prefieras */
+  opacity: 1; /* IMPORTANTE: Firefox le baja la opacidad por defecto, esto lo arregla */
+  font-weight: 400; /* Opcional: le quita negrita si es que hereda alguna */
+}
+
+/* Opcional: Que el placeholder se vuelva más clarito cuando le haces clic (focus) */
+.campos-contacto .p-inputtext:focus::placeholder {
+  color: #d4d4d8; 
+}
+  /* ==================================================
+     5. PASO 2 - CURSOS Y HORARIOS
+     ================================================== */
+  .flex-header-step { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .flex-header-step h3 { margin: 0; font-size: 1.3rem; font-weight: 800; color: #0f172a; flex: 1; text-align: center; }
+  
+  .filtros-nivel { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .pill-filtro { padding: 8px 20px; border-radius: 20px; border: 1px solid #cbd5e1; background: white; color: #475569; font-weight: 600; cursor: pointer; transition: 0.2s; }
+  .pill-filtro.activo { background: #0f172a; color: white; border-color: #0f172a; }
+  
+  .lista-cursos-compacta { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .curso-card-horizontal { display: flex; align-items: center; padding: 12px; border: 2px solid #e2e8f0; border-radius: 16px; background: white; cursor: pointer; transition: 0.2s; }
+  .curso-card-horizontal.seleccionado { border-color: #0ea5e9; background: #f0f9ff; }
+  .curso-img-mini { width: 80px; height: 80px; background: #e0f2fe; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+  .curso-img-mini img { width: 100%; height: 100%; object-fit: cover; }
+  .curso-info-mini { margin-left: 16px; flex: 1; min-width: 0; }
+  .badge-nivel-mini { background: #e2e8f0; font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 6px; color: #475569; }
+  .curso-info-mini h4 { margin: 6px 0; font-size: 1rem; color: #0f172a; }
+  .precio-mini { color: #0284c7; font-weight: 800; font-size: 1.1rem; }
+  .precio-tachado { color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-decoration: line-through; }
+  
+  .seccion-horarios-dinamicos { background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;}
+  .seccion-horarios-dinamicos h5 { margin: 0 0 12px 0; font-size: 1rem; font-weight: 800; color: var(--primary-blue); }
+  .lista-horarios-split { margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .item-horario-split { display: flex; align-items: center; padding: 14px; border: 2px solid #cbd5e1; border-radius: 12px; background: white; cursor: pointer; }
+  .item-horario-split.activo { border-color: #3b82f6; background: #eff6ff; }
+  .item-horario-split.agotado { opacity: 0.6; background: #f1f5f9; cursor: not-allowed; }
+  
+  .info-grupo-bd { margin-left: 12px; flex: 1; }
+  .nombre-grupo { font-weight: 800; font-size: 0.95rem; color: #0f172a; }
+  .horas-grupo { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+  .vacantes-badge { padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; }
+  .vacantes-badge.verde { background: #dcfce7; color: #166534; }
+  .vacantes-badge.rojo { background: #fee2e2; color: #991b1b; }
+  
+  /* ==================================================
+     6. PASO 3 - RESUMEN
+     ================================================== */
+  .resumen-box { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 20px; padding: 30px; max-width: 600px; margin: 0 auto; }
+  .resumen-fila { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #cbd5e1; }
+  .resumen-fila .label { color: #64748b; font-weight: 600; min-width: 80px; }
+  .resumen-fila .valor { color: #0f172a; text-align: right; }
+  
+  .resumen-total { margin-top: 20px; padding-top: 20px; border-top: 2px solid #94a3b8; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 1.1rem; }
+  .precio-final { color: #02418e; font-size: 1.3rem; display: flex; gap: 12px; align-items: center; }
+  .precio-original { color: #94a3b8; font-size: 1rem; text-decoration: line-through; }
+  
+  .btn-continuar, .btn-finalizar, .btn-continuar-step { padding: 16px !important; font-size: 1.1rem !important; border-radius: 12px !important; }
+  .btn-finalizar { background: #027b55 !important; border: none !important; max-width: 600px; margin: 30px auto 0 auto; display: flex; }
+  
+  @media (max-width: 768px) {
+    .page-inscripcion-wrapper { padding: 0; }
+    .wizard-container { border-radius: 0; }
+    .wizard-body { padding: 20px; }
+    .identidad-grid { grid-template-columns: 1fr; gap: 24px; }
+    .identidad-form { text-align: center; }
+    .identidad-form .icon-wrapper { margin: 0 auto 16px auto; }
+    .lista-cursos-compacta, .lista-horarios-split { grid-template-columns: 1fr; }
+    .resumen-box { padding: 20px; }
+    .resumen-fila { flex-direction: column; gap: 4px; text-align: left; }
+    .resumen-fila .valor { text-align: left; }
+  }
+
+/* ==================================================
+   5. PASO 2 - CURSOS Y HORARIOS
+   ================================================== */
+/* ... (deja los estilos de flex-header-step y filtros-nivel igual) ... */
+
+.lista-cursos-compacta { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Tarjetas un poco más estrechas */
+  gap: 16px; 
+}
+
+/* NUEVOS ESTILOS PARA LA TARJETA SIN IMAGEN */
+.curso-card-horizontal.sin-imagen {
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  justify-content: flex-start;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative; /* Para el ícono de la esquina */
+}
+
+.curso-card-horizontal.sin-imagen:hover {
+  border-color: #bae6fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.curso-card-horizontal.sin-imagen.seleccionado {
+  border-color: #0ea5e9;
+  background: #f0f9ff;
+  box-shadow: 0 0 0 1px #0ea5e9;
+}
+
+/* Ajustes internos de la tarjeta */
+.curso-card-horizontal.sin-imagen .curso-info-mini {
+  width: 100%;
+  margin-left: 0; /* Quitamos el margen izquierdo que era para la imagen */
+}
+
+.curso-card-horizontal.sin-imagen .badge-nivel-mini {
+  background: #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #475569;
+  display: inline-block;
+}
+
+.curso-card-horizontal.sin-imagen h4 {
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.curso-card-horizontal.sin-imagen .precio-mini {
+  margin-top: auto; /* Empuja el precio hacia abajo si la tarjeta es más alta */
+}
+
+/* El ícono de computadora en la esquina superior derecha */
+.curso-card-horizontal.sin-imagen .icon-top-right {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #cbd5e1;
+  font-size: 1.3rem;
+}
+.curso-card-horizontal.sin-imagen.seleccionado .icon-top-right {
+  color: #0ea5e9;
+}
+
+/* ==================================================
+   PERSONALIZACIÓN DEL TOAST (Notificaciones)
+   ================================================== */
+   .p-toast .p-toast-message .p-toast-message-content {
+    /* El primer valor es arriba/abajo, el segundo es izquierda/derecha */
+    padding: 18px 20px !important; 
+    align-items: center; /* Centra el texto y el icono verticalmente */
+  }
+  
+  /* Opcional: Si quieres separar más el texto del icono de la izquierda */
+  .p-toast .p-toast-message .p-toast-message-text {
+    margin: 0 0 0 16px !important; 
+  }
+  
+  /* Opcional: Redondear más los bordes del toast para que haga juego con tu diseño */
+  .p-toast .p-toast-message {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  

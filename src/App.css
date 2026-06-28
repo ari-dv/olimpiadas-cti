@@ -10,6 +10,7 @@
     overflow: hidden;
     box-shadow: 0 12px 35px rgba(43, 58, 140, 0.25);
   }
+  
 
   .scholarship-banner::before {
     content: '';
@@ -42,6 +43,7 @@
     z-index: 1;
   }
 
+  
   .banner-title {
     font-size: 22px;
     font-weight: 800;

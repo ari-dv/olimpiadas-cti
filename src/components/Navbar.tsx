@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation(); 
+  const navigate = useNavigate(); // <-- Agregamos el hook para navegar
 
   const navLinks = [
     { label: 'Resultados', path: '/#buscar-resultados' },
@@ -14,13 +15,8 @@ const Navbar = () => {
     { label: 'Contacto', path: '/#contacto' },
   ];
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="navbar">
@@ -40,33 +36,35 @@ const Navbar = () => {
           onClick={toggleMenu}
           aria-label="Menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
 
         <nav className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
           <ul>
-          {navLinks.map((link) => {
-            // CORRECCIÓN CLAVE: Usamos includes('#') porque la ruta es '/#seccion'
-            const isAnchor = link.path.includes('#'); 
-
-            return (
-              <li key={link.label}>
-                {isAnchor ? (
-                  // Usamos etiqueta <a> normal para que vuelva al home y baje a la sección
-                  <a href={link.path} onClick={closeMenu}>
-                    {link.label}
-                  </a>
-                ) : (
-                  // Usamos Link normal solo para páginas completas (ej: '/cursos' si fuera el caso)
-                  <Link to={link.path} onClick={closeMenu}>
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            );
-          })}
+            {navLinks.map((link) => {
+              const isAnchor = link.path.includes('#'); 
+              return (
+                <li key={link.label}>
+                  {isAnchor ? (
+                    <a href={link.path} onClick={closeMenu}>{link.label}</a>
+                  ) : (
+                    <Link to={link.path} onClick={closeMenu}>{link.label}</Link>
+                  )}
+                </li>
+              );
+            })}
+            {/* Botón CTA - Ahora navega a la ruta en vez de abrir modal */}
+            <li>
+              <button 
+                className="btn-cta-matricula" 
+                onClick={() => {
+                  closeMenu();
+                  navigate('/inscripcion'); // <-- Viaje directo a la página
+                }}
+              >
+                Inscribirse
+              </button>
+            </li>
           </ul>
         </nav>
       </div>

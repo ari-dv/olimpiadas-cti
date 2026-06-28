@@ -142,3 +142,32 @@
       align-items: center;
     }
   }
+
+  /* Botón de Inscribirse (Call to Action) */
+.btn-cta-matricula {
+  background-color: #0ea5e9;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
+}
+
+.btn-cta-matricula:hover {
+  background-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px -1px rgba(14, 165, 233, 0.3);
+}
+
+/* En móviles, hacer que el botón ocupe todo el ancho */
+@media (max-width: 768px) {
+  .btn-cta-matricula {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+  }
+}
